@@ -1,0 +1,33 @@
+{
+  "name": "fantasy-cofrees",
+  "version": "0.0.0",
+  "description": "Cofree comonad structure.",
+  "main": "cofree.js",
+  "scripts": {
+    "test": "node_modules/.bin/grumble test",
+    "build": "node_modules/.bin/grumble"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/puffnfresh/fantasy-cofrees.git"
+  },
+  "keywords": [
+    "fantasyland",
+    "cofree",
+    "comonad"
+  ],
+  "author": "Brian McKenna",
+  "license": "MIT",
+  "grumble": {
+    "export": "Cofree"
+  },
+  "bugs": {
+    "url": "https://github.com/puffnfresh/fantasy-cofrees/issues"
+  },
+  "devDependencies": {
+    "grumble": "0.0.1"
+  },
+  "dependencies": {
+    "daggy": "0.0.1"
+  }
+}
