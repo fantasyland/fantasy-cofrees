@@ -18,10 +18,31 @@ var Cofree = require('../cofree'),
         )
     );
 
+Option.of = Option.Some;
 Option.prototype.map = function(f) {
     return this.cata({
         Some: function(x) {
             return Option.Some(f(x));
+        },
+        None: function() {
+            return Option.None;
+        }
+    });
+};
+Option.prototype.traverse = function(f, p) {
+    return this.cata({
+        Some: function(x) {
+            return Option.Some(f(x));
+        },
+        None: function() {
+            return p.of(Option.None);
+        }
+    });
+};
+Option.prototype.ap = function(b) {
+    return this.cata({
+        Some: function(x) {
+            return b.map(x);
         },
         None: function() {
             return Option.None;
@@ -69,5 +90,11 @@ exports.testMap = function(test) {
         })),
         [20, 40, 60]
     );
+    test.done();
+};
+
+exports.testTraverse = function(test) {
+    var traversed = nel.traverse(Option.Some, Option);
+    test.deepEqual(traversed.map(nelArray), Option.Some([1, 2, 3]));
     test.done();
 };

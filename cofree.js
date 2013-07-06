@@ -17,6 +17,16 @@ Cofree.prototype.extend = function(g) {
         return c.extend(g);
     }));
 };
+Cofree.prototype.traverse = function(g, p) {
+    function go(h) {
+        return g(h.a).map(function(x) {
+            return function(i) {
+                return Cofree(x, i);
+            };
+        }).ap(h.f.traverse(go, p));
+    }
+    return go(this);
+};
 
 // Export
 if(typeof module != 'undefined')
