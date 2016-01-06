@@ -3,13 +3,9 @@
   "version": "0.0.2",
   "description": "Cofree comonad structure.",
   "main": "cofree.js",
-  "scripts": {
-    "test": "node_modules/.bin/grumble test",
-    "build": "node_modules/.bin/grumble"
-  },
   "repository": {
     "type": "git",
-    "url": "git://github.com/puffnfresh/fantasy-cofrees.git"
+    "url": "git://github.com/fantasyland/fantasy-cofrees.git"
   },
   "keywords": [
     "fantasyland",
@@ -22,12 +18,22 @@
     "export": "Cofree"
   },
   "bugs": {
-    "url": "https://github.com/puffnfresh/fantasy-cofrees/issues"
-  },
-  "devDependencies": {
-    "grumble": "0.0.1"
+    "url": "https://github.com/fantasyland/fantasy-cofrees/issues"
   },
   "dependencies": {
-    "daggy": "0.0.1"
-  }
+    "daggy": "0.0.1",
+    "fantasy-combinators": "0.0.1"
+  },
+  "devDependencies": {
+    "nodeunit": "0.9.x",
+    "fantasy-check": "0.1.6",
+    "fantasy-helpers": "0.0.x",
+    "fantasy-identities": "0.0.x",
+    "fantasy-options": "git+https://github.com/fantasyland/fantasy-options.git"
+  },
+  "scripts": {
+      "test": "node --harmony_destructuring node_modules/.bin/nodeunit test/*.js"
+  },
+  "files": ["fantasy-cofrees.js", "src/*.js"],
+  "main": "fantasy-cofrees.js"
 }

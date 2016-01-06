@@ -1,9 +1,9 @@
-var daggy = require('daggy'),
-    Cofree = daggy.tagged('a', 'f');
+const daggy = require('daggy');
+const Cofree = daggy.tagged('a', 'f');
 
 // Methods
 Cofree.prototype.map = function(g) {
-    return Cofree(g(this.a), this.f.map(function(cf) {
+    return Cofree(g(this.a), this.f.map((cf) => {
         return cf.map(g);
     }));
 };
@@ -13,16 +13,15 @@ Cofree.prototype.extract = function() {
 };
 
 Cofree.prototype.extend = function(g) {
-    return Cofree(g(this), this.f.map(function(c) {
+    return Cofree(g(this), this.f.map((c) => {
         return c.extend(g);
     }));
 };
+
 Cofree.prototype.traverse = function(g, p) {
     function go(h) {
-        return g(h.a).map(function(x) {
-            return function(i) {
-                return Cofree(x, i);
-            };
+        return g(h.a).map((x) => {
+            return (i) => Cofree(x, i);
         }).ap(h.f.traverse(go, p));
     }
     return go(this);
